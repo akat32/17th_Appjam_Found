@@ -31,7 +31,7 @@ var UsersSchema = mongoose.Schema({
 })
 
 var IdeasSchema = mongoose.Schema({
-  profileImg : {type : String, default : "http://18.222.180.31:3000/profile/profile.PNG"}, // 아이디어 주인의 이미지 링크
+  profileImg : {type : String, default : "http://18.222.180.31:3000/profile/profile.png"}, // 아이디어 주인의 이미지 링크
   category : {type : String}, // 카테고리
   name : {type : String}, // 아이디어 주인의 이름
   title : {type: String}, // 제목
