@@ -47,6 +47,26 @@ function newProjects(app, Projects, Users, rndstring, multer) {
   })
   .post('/projectList', async (req,res)=>{
     let result = await Projects.find()
+    let list1 = [], list2 = [], list3 = [], list4 = [], list5 = [], list6 = [], list7 = [], list8 = []
+    for (var i=0;result[i]!= null;i++) {
+      if(result[i].category === "IT") list1.push(result[i])
+      if(result[i].category === "스포츠") list2.push(result[i])
+      if(result[i].category === "교육") list3.push(result[i])
+      if(result[i].category === "유통 및 판매") list4.push(result[i])
+      if(result[i].category === "쇼핑") list5.push(result[i])
+      if(result[i].category === "외식 및 요리") list6.push(result[i])
+      if(result[i].category === "대여 및 배달") list7.push(result[i])
+      if(result[i].category === "기타") list8.push(result[i])
+    }
+    if(req.body.number == 1) result = list1
+    if(req.body.number == 2) result = list2
+    if(req.body.number == 3) result = list3
+    if(req.body.number == 4) result = list4
+    if(req.body.number == 5) result = list5
+    if(req.body.number == 6) result = list6
+    if(req.body.number == 7) result = list7
+    if(req.body.number == 8) result = list8
+
     res.status(200).json({list: result})
   })
   .post('/myProjectList', async (req,res)=>{
