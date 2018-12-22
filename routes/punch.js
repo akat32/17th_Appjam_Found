@@ -12,7 +12,7 @@ function punch (app, Projects, Users, rndstring) {
     })
     if(!result.ok) return res.status(500).json({message : "ERR!"})
     let new_punch = {
-      projectToken : req.body.projectToken,
+      token : req.body.projectToken,
       price : req.body.price,
       name : req.body.company
     }
@@ -21,8 +21,8 @@ function punch (app, Projects, Users, rndstring) {
     })
     if(!result.ok) return res.status(500).json({message : "ERR!"})
     let project = await Projects.findOne({token : req.body.projectToken})
-    let money = project.punchPrice + req.body.price
-    result = await Projects.update({token : req.body.token}, {
+    let money = parseInt(parseInt(project.punchPrice) + parseInt(req.body.price))
+    result = await Projects.update({token : req.body.projectToken}, {
       $set : {punchPrice : money}
     })
     if(!result.ok) return res.status(500).json({message : "ERR!"})

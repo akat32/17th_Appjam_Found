@@ -110,21 +110,21 @@
 
     HTTP 500 : { message : "ERR!" }
 
-* POST /newItem ( 프로젝트 생성 )
+* POST /newIdea ( 아이디어 생성 )
 
 > Params
 
-    token : 유저 토큰
+    profileImg : 유저의 프로필 이미지 링크
 
-    title : {type : String}, // 사업 제목
+    category : 카테고리
 
-    itemName : {type : String}, // 아이템 이름
+    name : 유저 이름
 
-    itemIntroduce : {type : String}, // 간단한 아이템 설명
+    title : 아이디어 제목
 
-    introduce : {type : String}, // 상세 설명
+    index : 아이디어 설명
 
-    category : {type : String}, // 카테고리
+    userToken : 유저 토큰
 
 > Response
 
@@ -132,41 +132,21 @@
 
     HTTP 500 : { message : "ERR!" }
 
-* POST /itemset ( 프로젝트 수정 )
+* POST /addIdeaImg ( 아이디어 이미지 추가 )
 
 > Params
 
-    token : 프로젝트 토큰
+    img : 올릴 사진
 
-    title : 사업 제목
-
-    itemName : 아이템 이름
-
-    itemIntroduce : 간단한 아이템 설명
-
-    category : 카테고리
-
-    userToken : 프로젝트 대표 토큰
+    token : 아이디어 글 토큰
 
 > Response
 
-    HTTP 200 : { message : "success!"}
+    HTTP 200 : { message : "success!" }
 
     HTTP 500 : { message : "ERR!" }
 
-* POST /itemdel ( 프로젝트 삭제 )
-
-> Params
-
-    token : 프로젝트 토큰
-
-> Response
-
-    HTTP 200 : { message : "success!"}
-
-    HTTP 500 : { message : "ERR!"}
-
-* POST /allItems ( 모든 프로젝트 찾기 )
+* POST /ideaList ( 전체 아이디어 리스트 반환 )
 
 > Params
 
@@ -175,20 +155,152 @@
 > Response
 
     HTTP 200 : {
-      "list": [
-          {
-            "title": "CNyvSyooFQnR",
-            "token": "7M14Z396iQOr",
-            "itemName": "asdasdsadasd",
-            "itemIntroduce": "asdsalkdjals;kdj;lsakjd;lksajd;lksajf",
-            "introduce": "asfd;ljksafjlakwjgew9oidhgpewufn",
-            "category": "sadaslkdjsalkdjlkjgoiergoqwlkajgnkr;do",
-            "staffList": [
+    "list": [
+        {
+            "profileImg": "test",
+            "category": "아이티",
+            "name": "test",
+            "title": "신기술입니다!",
+            "index": "살려줘...",
+            "userToken": "aHRCKhNjWXeFyKFjAINBKKfi0isps8AIgfBWOEPW",
+            "token": "DYFhd1vDv9qjYPL1Oep274",
+            "reply": [
                 {
-                    "token": "PETzEjoxWmDAZRciv1CD1ptCcPYf9o54IbqjcIBl"
+                    "index": "좋네요!",
+                    "profileImg": "으헤헿",
+                    "name": "사람"
                 }
             ],
-            "currentStaff": 1,
+            "img": [
+                {
+                    "link": "http://18.222.180.31:3000/idea/jMEmA16FiEYB6l0cxrhrG6uuHx8mHPnI9.PNG"
+                }
+            ],
           }
-       ]
+        ]
     }
+
+* POST /addreply ( 아이디어에 댓글달기 )
+
+> Params
+
+    token : 아이디어 글 토큰
+
+    index : 내용
+
+    name : 댓글 쓸 유저 이름
+
+    profileImg : 댓글 쓸 유저 프로필 이미지 링크
+
+> Response
+
+    HTTP 200 : { message : "success!" }
+
+    HTTP 500 : { message : "ERR!" }
+
+* POST /myIdeaList ( 내 아이디어 리스트 )
+
+> Params
+
+    token : 유저 토큰
+
+> Response
+
+    HTTP 200 : {
+    "list": [
+        {
+            "profileImg": "test",
+            "category": "아이티",
+            "name": "test",
+            "title": "신기술입니다!",
+            "index": "살려줘...",
+            "userToken": "aHRCKhNjWXeFyKFjAINBKKfi0isps8AIgfBWOEPW",
+            "token": "DYFhd1vDv9qjYPL1Oep274",
+            "reply": [
+                {
+                    "index": "좋네요!",
+                    "profileImg": "으헤헿",
+                    "name": "사람"
+                }
+            ],
+            "img": [
+                {
+                    "link": "http://18.222.180.31:3000/idea/jMEmA16FiEYB6l0cxrhrG6uuHx8mHPnI9.PNG"
+                }
+            ],
+          }
+        ]
+    }
+
+* POST /returnIdea ( 아이디어 반환 { 한개 } )
+
+> Params
+
+    token : 아이디어 글 토큰
+
+> Response
+
+    HTTP 200 : {
+    "idea": {
+        "profileImg": "test",
+        "category": "아이티",
+        "name": "test",
+        "title": "신기술입니다!",
+        "index": "살려줘...",
+        "userToken": "aHRCKhNjWXeFyKFjAINBKKfi0isps8AIgfBWOEPW",
+        "token": "DYFhd1vDv9qjYPL1Oep274",
+        "reply": [
+            {
+                "index": "좋네요!",
+                "profileImg": "으헤헿",
+                "name": "사람"
+            }
+        ],
+        "img": [
+            {
+                "link": "http://18.222.180.31:3000/idea/jMEmA16FiEYB6l0cxrhrG6uuHx8mHPnI9.PNG"
+            }
+        ],
+      }
+    }
+    HTTP 404 : {message : "Not Found!"}
+
+* POST /newIdea ( 아이디어 생성 )
+
+> Params
+> Response
+
+* POST /newIdea ( 아이디어 생성 )
+
+> Params
+> Response
+
+* POST /newIdea ( 아이디어 생성 )
+
+> Params
+> Response
+
+* POST /newIdea ( 아이디어 생성 )
+
+> Params
+> Response
+
+* POST /newIdea ( 아이디어 생성 )
+
+> Params
+> Response
+
+* POST /newIdea ( 아이디어 생성 )
+
+> Params
+> Response
+
+* POST /newIdea ( 아이디어 생성 )
+
+> Params
+> Response
+
+* POST /newIdea ( 아이디어 생성 )
+
+> Params
+> Response

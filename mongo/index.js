@@ -54,7 +54,7 @@ var ProjectsSchema = mongoose.Schema({
   title : {type : String}, // 제목
   token : {type : String}, // 글 토큰
   company : {type : String}, // 회사
-  index : {type : String}, //
+  index : {type : String}, // 내용
   userToken : {type : String}, // 글 올린 사람 토큰
   price : {type : Number}, // 예상 가격
   punchPrice : {type : Number, default : 0}, // 모인 금액

@@ -4,6 +4,7 @@ function newIdeas(app, Ideas, Users, rndstring, multer) {
   var storage = multer.diskStorage({
     destination: (req,file,cb)=>{
       cb(null, '/home/ubuntu/17th_Appjam_Found/public/idea'); //C:\\Users\\parktea\\Desktop\\17Appjam\\public
+      // cb(null, 'C:\\Users\\parktea\\Desktop\\17Appjam\\public\\idea');
     },
     filename: (req,file,cb)=>{
       var newStr = rndstring.generate(33);
@@ -69,8 +70,12 @@ function newIdeas(app, Ideas, Users, rndstring, multer) {
     res.status(200).json({list : list})
   })
   .post('/returnIdea', async (req,res)=>{
-    let result = Ideas.findOne({token : req.body.token})
+    let result = await Ideas.findOne({token : req.body.token})
     if(!result) return res.status(404).json({message : "Not found!"})
     else return res.status(200).json({idea : result})
+  })
+  .post('/bb', async(req,res)=>{
+    let result = await Ideas.find()
+    res.send(result)
   })
 }

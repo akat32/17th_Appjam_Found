@@ -4,6 +4,7 @@ function newProjects(app, Projects, Users, rndstring, multer) {
   var storage = multer.diskStorage({
     destination: (req,file,cb)=>{
       cb(null, '/home/ubuntu/17th_Appjam_Found/public/project'); //C:\\Users\\parktea\\Desktop\\17Appjam\\public
+      // cb(null, 'C:\\Users\\parktea\\Desktop\\17Appjam\\public\\project');
     },
     filename: (req,file,cb)=>{
       var newStr = rndstring.generate(33);
@@ -59,7 +60,7 @@ function newProjects(app, Projects, Users, rndstring, multer) {
     res.status(200).json({list : list})
   })
   .post('/returnProject', async (req,res)=>{
-    let result = Projects.findOne({token : req.body.token})
+    let result = await Projects.findOne({token : req.body.token})
     if(!result) return res.status(404).json({message : "Not found!"})
     else return res.status(200).json({project : result})
   })
