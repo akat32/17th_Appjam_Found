@@ -39,10 +39,11 @@ function auth(app, Users, rndstring, path, multer) {
       name : req.body.name,
       id : req.body.id,
       passwd : req.body.passwd,
-      token : req.body.token,
+      token : result.token,
       itemList : result.itemList,
       punchList : result.punchList,
-      phone : req.body.phone
+      phone : req.body.phone,
+      profileImg : result.profileImg
     }
     result = await Users.remove({token : req.body.token})
     if(!result.ok) return res.status(500).json({message : "ERR!"})
