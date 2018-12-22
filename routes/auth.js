@@ -1,21 +1,20 @@
 module.exports = auth
 
-function auth(app, Users, rndstring, path, multer) {
-  const upload = multer({
-   storage: multer.diskStorage({
-     destination: (req,file,cb)=>{
-       cb(null, '/home/ubuntu/Server/public/video'); ///root/meouk/MeoukTalk/public/profile/
-     },
-     filename: (req,file,cb)=>{
-       var newStr = rndstring.generate(33);
-       newStr = newStr + ".PNG"
-       cb(null, newStr);
-     }
-   }),
-   limits: {
-     fileSize: 5 * 1024 * 1024
-   }
-  });
+function auth(app, Users, rndstring, multer, fs) { // path 와 multer 은 충돌난다.
+  var storage = multer.diskStorage({
+    destination: (req,file,cb)=>{
+      cb(null, 'C:\\Users\\parktea\\Desktop\\17Appjam\\public'); ///root/meouk/MeoukTalk/public/profile/
+    },
+    filename: (req,file,cb)=>{
+      var newStr = rndstring.generate(33);
+      newStr = newStr + ".PNG"
+      cb(null, newStr);
+    },
+    limits: {
+      fileSize: 5 * 1024 * 1024
+    }
+  })
+  const upload = multer({storage : storage});
   app.post('/signup', async(req,res)=>{
     var user = new Users(req.body);
     user.token = rndstring.generate(40);
@@ -35,25 +34,25 @@ function auth(app, Users, rndstring, path, multer) {
   })
   .post('/signset', async (req,res)=>{
     let result = await Users.findOne({token : req.body.token})
+    if(!result) return res.status(404).json({message : "Users Not found!"})
     let json = {
       name : req.body.name,
       id : req.body.id,
       passwd : req.body.passwd,
-      token : result.token,
+      token : req.body.token,
       itemList : result.itemList,
       punchList : result.punchList,
       phone : req.body.phone,
       profileImg : result.profileImg
     }
-    result = await Users.remove({token : req.body.token})
+    result = await Users.deleteOne({token : req.body.token})
     if(!result.ok) return res.status(500).json({message : "ERR!"})
     json = new Users(json)
     result = await json.save();
-    if(!result.ok) return res.status(500).json({message:  "ERR!"})
-    else return res.status(200).json({message : "success!"})
+    return res.status(200).json({message : "success!"})
   })
   .post('/signdel', async (req,res)=>{
-     var result = await Users.remove({token : req.body.token})
+     var result = await Users.deleteOne({token : req.body.token})
      if(!result.ok) return res.status(500).json({message : "ERR!"})
      res.status(200).json({message : "success!"})
   })
@@ -62,7 +61,17 @@ function auth(app, Users, rndstring, path, multer) {
     if(!result) return res.status(200).json({message : "success!"})
     else return res.status(409).json({message : "id exist"})
   })
-  .post('/img', async (req,res)=>{
-    let result = await
+  .post('/img', upload.single('img'), async (req,res)=>{
+    let json = {profileImg : "baseurl" + req.file.filename}
+    let url = "baseurl" + req.file.filename
+    let result = await Users.update({token : req.body.token}, {
+      $set : {profileImg : url}
+    })
+    if(!result.ok) return res.status(500).json({message : "ERR!"})
+    res.status(200).json({message : "success!"})
+  })
+  .post('/aa', async (req,res)=>{
+    let result = await Users.find()
+    res.send(result)
   })
 }

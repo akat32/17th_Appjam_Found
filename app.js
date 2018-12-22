@@ -9,6 +9,8 @@ let app = express()
 import { Users, Items } from './mongo'
 require('./func')
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({limit: '1gb', extended: false }));
 
@@ -18,5 +20,5 @@ app.listen(PORT, ()=>{
   console.log ('Server On ' + PORT)
 })
 
-require('./routes/auth')(app, Users, rndstring, multer)
+require('./routes/auth')(app, Users, rndstring, multer, fs)
 require('./routes/newItem')(app, Items, Users, rndstring, path, multer)

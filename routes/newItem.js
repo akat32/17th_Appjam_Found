@@ -42,4 +42,8 @@ function newItem(app, Items, Users, rndstring) {
     if(!result.ok) return res.status(500).json({message : "ERR!"})
     res.status(200).json({message : "success!"})
   })
+  .post('/bb', async (req,res)=>{
+    let result = await Items.find()
+    res.send(result)
+  })
 }
