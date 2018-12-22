@@ -263,44 +263,159 @@
         ],
       }
     }
+
     HTTP 404 : {message : "Not Found!"}
 
-* POST /newIdea ( 아이디어 생성 )
+* POST /newProject ( 프로젝트 생성 )
 
 > Params
+
+    img : 썸네일 쯤의 의미지
+
+    category : 카테고리
+
+    title : 제목
+
+    company : 법인 명 ( 회사 )
+
+    index : 내용
+
+    userToken : 글 올리는 유저 토큰
+
+    price : 예상 가격
+
 > Response
 
-* POST /newIdea ( 아이디어 생성 )
+    HTTP 200 : { message : "success!" }
+
+    HTTP 500 : { message : "ERR!" }
+
+* POST /addProjectImg ( 아이디어 생성 )
 
 > Params
+
+    img : 올릴 이미지 ( 1개 )
+
+    token : 글 토큰
+
 > Response
 
-* POST /newIdea ( 아이디어 생성 )
+    HTTP 200 : { message : "success!" }
+
+    HTTP 500 : { message : "ERR!" }
+
+* POST /projectList ( 아이디어 생성 )
 
 > Params
+
+    없음
+
 > Response
 
-* POST /newIdea ( 아이디어 생성 )
+    HTTP 200 : {
+    "list": [
+        {
+            "punchPrice": 11122222,
+            "mainImg": "http://18.222.180.31:3000/project/2jkg4Co8NZ9uJZcvlIIqVpgj3Xj3x5TTg.PNG",
+            "title": "제목입니다.",
+            "token": "eFH0ziqcfXbxYZBmNWKwjQ",
+            "company": "식탁",
+            "index": "내용입니다.",
+            "userToken": "aHRCKhNjWXeFyKFjAINBKKfi0isps8AIgfBWOEPW",
+            "price": 123123,
+            "punchMember": [
+            ],
+            "img": [
+                {
+                    "link": "http://18.222.180.31:3000/project/7YVQ7SbIVQroGpMqUAY70WS5QrjbBlTq5.PNG"
+                },
+                {
+                    "link": "http://18.222.180.31:3000/project/DoSVJHVjaKSV1FwwreCUIntw4wXUC8m5h.PNG"
+                },
+                {
+                    "link": "http://18.222.180.31:3000/project/57KjfyaBzgKkUPxVmuSa4msjP5Qkp3pfl.PNG"
+                },
+                {
+                    "link": "http://18.222.180.31:3000/project/YtY6ae5BI5KDkMpm9IvWXDthBK1wj0wJg.PNG"
+                }
+            ],
+        }
+    ]
+}
+
+* POST /myProjectList ( 아이디어 생성 )
 
 > Params
+
+    token : 유저 토큰
+
 > Response
 
-* POST /newIdea ( 아이디어 생성 )
+    HTTP 200 : "list": [
+        {
+            "punchPrice": 11122222,
+            "mainImg": "http://18.222.180.31:3000/project/2jkg4Co8NZ9uJZcvlIIqVpgj3Xj3x5TTg.PNG",
+            "title": "제목입니다.",
+            "token": "eFH0ziqcfXbxYZBmNWKwjQ",
+            "company": "식탁",
+            "index": "내용입니다.",
+            "userToken": "aHRCKhNjWXeFyKFjAINBKKfi0isps8AIgfBWOEPW",
+            "price": 123123,
+            "punchMember": [
+            ],
+            "img": [
+                {
+                    "link": "http://18.222.180.31:3000/project/7YVQ7SbIVQroGpMqUAY70WS5QrjbBlTq5.PNG"
+                },
+                {
+                    "link": "http://18.222.180.31:3000/project/DoSVJHVjaKSV1FwwreCUIntw4wXUC8m5h.PNG"
+                },
+                {
+                    "link": "http://18.222.180.31:3000/project/57KjfyaBzgKkUPxVmuSa4msjP5Qkp3pfl.PNG"
+                },
+                {
+                    "link": "http://18.222.180.31:3000/project/YtY6ae5BI5KDkMpm9IvWXDthBK1wj0wJg.PNG"
+                }
+            ],
+        }
+    ]
+
+    HTTP 404 : { message : "Not found!"}
+
+* POST /returnProject ( 아이디어 생성 )
 
 > Params
+
+    token : 글 토큰
+
 > Response
 
-* POST /newIdea ( 아이디어 생성 )
+    HTTP 200 :
+     "project" : {
+          "punchPrice": 11122222,
+          "mainImg": "http://18.222.180.31:3000/project/2jkg4Co8NZ9uJZcvlIIqVpgj3Xj3x5TTg.PNG",
+          "title": "제목입니다.",
+          "token": "eFH0ziqcfXbxYZBmNWKwjQ",
+          "company": "식탁",
+          "index": "내용입니다.",
+          "userToken": "aHRCKhNjWXeFyKFjAINBKKfi0isps8AIgfBWOEPW",
+          "price": 123123,
+          "punchMember": [
+          ],
+          "img": [
+              {
+                  "link": "http://18.222.180.31:3000/project/7YVQ7SbIVQroGpMqUAY70WS5QrjbBlTq5.PNG"
+              },
+              {
+                  "link": "http://18.222.180.31:3000/project/DoSVJHVjaKSV1FwwreCUIntw4wXUC8m5h.PNG"
+              },
+              {
+                  "link": "http://18.222.180.31:3000/project/57KjfyaBzgKkUPxVmuSa4msjP5Qkp3pfl.PNG"
+              },
+              {
+                  "link": "http://18.222.180.31:3000/project/YtY6ae5BI5KDkMpm9IvWXDthBK1wj0wJg.PNG"
+              }
+          ],
+      }
 
-> Params
-> Response
-
-* POST /newIdea ( 아이디어 생성 )
-
-> Params
-> Response
-
-* POST /newIdea ( 아이디어 생성 )
-
-> Params
-> Response
+      HTTP 404 : {message : "Not found!"}
