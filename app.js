@@ -6,7 +6,7 @@ import path from 'path'
 import multer from 'multer'
 let app = express()
 
-import { Users, Items } from './mongo'
+import { Users, Ideas, Projects } from './mongo'
 require('./func')
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -21,4 +21,5 @@ app.listen(PORT, ()=>{
 })
 
 require('./routes/auth')(app, Users, rndstring, multer, fs)
-require('./routes/newItem')(app, Items, Users, rndstring, path, multer)
+require('./routes/newIdeas')(app, Ideas, Users, rndstring, multer)
+require('./routes/newProjects')(app, Projects, Users, rndstring, multer)

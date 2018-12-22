@@ -3,7 +3,7 @@ module.exports = auth
 function auth(app, Users, rndstring, multer, fs) { // path 와 multer 은 충돌난다.
   var storage = multer.diskStorage({
     destination: (req,file,cb)=>{
-      cb(null, '/home/ubuntu/17th_Appjam_Found/public'); //C:\\Users\\parktea\\Desktop\\17Appjam\\public
+      cb(null, '/home/ubuntu/17th_Appjam_Found/public/profile'); //C:\\Users\\parktea\\Desktop\\17Appjam\\public
     },
     filename: (req,file,cb)=>{
       var newStr = rndstring.generate(33);
@@ -40,7 +40,8 @@ function auth(app, Users, rndstring, multer, fs) { // path 와 multer 은 충돌
       id : req.body.id,
       passwd : req.body.passwd,
       token : req.body.token,
-      itemList : result.itemList,
+      ideaList : result.ideaList,
+      projectList : result.projectList,
       punchList : result.punchList,
       phone : req.body.phone,
       profileImg : result.profileImg
