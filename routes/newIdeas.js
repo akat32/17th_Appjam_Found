@@ -53,13 +53,12 @@ function newIdeas(app, Ideas, Users, rndstring, multer) {
       if(result[i].category === "유통 및 판매") list4.push(result[i])
       if(result[i].category === "쇼핑") list5.push(result[i])
     }
-    result = {
-      list1 : list1,
-      list2 : list2,
-      list3 : list3,
-      list4 : list4,
-      list5 : list5
-    }
+    if(req.body.number == 1) result = list1
+    if(req.body.number == 2) result = list2
+    if(req.body.number == 3) result = list3
+    if(req.body.number == 4) result = list4
+    if(req.body.number == 5) result = list5
+
     res.status(200).json({list : result})
   })
   .post('/addreply', async (req,res)=>{
