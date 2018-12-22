@@ -165,3 +165,30 @@
     HTTP 200 : { message : "success!"}
 
     HTTP 500 : { message : "ERR!"}
+
+* POST /allItems ( 모든 프로젝트 찾기 )
+
+> Params
+
+    없음
+
+> Response
+
+    HTTP 200 : {
+      "list": [
+          {
+            "title": "CNyvSyooFQnR",
+            "token": "7M14Z396iQOr",
+            "itemName": "asdasdsadasd",
+            "itemIntroduce": "asdsalkdjals;kdj;lsakjd;lksajd;lksajf",
+            "introduce": "asfd;ljksafjlakwjgew9oidhgpewufn",
+            "category": "sadaslkdjsalkdjlkjgoiergoqwlkajgnkr;do",
+            "staffList": [
+                {
+                    "token": "PETzEjoxWmDAZRciv1CD1ptCcPYf9o54IbqjcIBl"
+                }
+            ],
+            "currentStaff": 1,
+          }
+       ]
+    }
