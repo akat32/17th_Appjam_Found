@@ -19,26 +19,25 @@ function newItem(app, Items, Users, rndstring) {
     res.status(200).json({message : "success!"})
   })
   .post('/itemset', async(req,res)=>{
-    let result = await Items.findOne(req.body.token)
+    let result = await Items.findOne({token : req.body.token})
     let json = {
       token : req.body.token,
       title : req.body.title,
       itemName : req.body.itemName,
-      itemIntroduce : req.boey.itemIntroduce,
+      itemIntroduce : req.body.itemIntroduce,
       currentStaff : result.currentStaff,
       staffList : result.staffList,
       category : req.body.category,
       representativeToken : req.body.userToken
     }
-    result = await Items.remove({token : req.body.token})
+    result = await Items.deleteOne({token : req.body.token})
     if(!result.ok) return res.status(500).json({message : "ERR!"})
     json = new Items(json)
     result = await json.save();
-    if(!result.ok) return res.status(500).json({message:  "ERR!"})
-    else return res.status(200).json({message : "success!"})
+    return res.status(200).json({message : "success!"})
   })
   .post('/itemdel', async(req,res)=>{
-    var result = await Items.remove({token : req.body.token})
+    var result = await Items.deleteOne({token : req.body.token})
     if(!result.ok) return res.status(500).json({message : "ERR!"})
     res.status(200).json({message : "success!"})
   })
