@@ -3,7 +3,7 @@ module.exports = auth
 function auth(app, Users, rndstring, multer, fs) { // path 와 multer 은 충돌난다.
   var storage = multer.diskStorage({
     destination: (req,file,cb)=>{
-      cb(null, 'C:\\Users\\parktea\\Desktop\\17Appjam\\public'); ///root/meouk/MeoukTalk/public/profile/
+      cb(null, '/home/ubuntu/17th_Appjam_Found/public'); //C:\\Users\\parktea\\Desktop\\17Appjam\\public
     },
     filename: (req,file,cb)=>{
       var newStr = rndstring.generate(33);
@@ -63,7 +63,7 @@ function auth(app, Users, rndstring, multer, fs) { // path 와 multer 은 충돌
   })
   .post('/img', upload.single('img'), async (req,res)=>{
     let json = {profileImg : "baseurl" + req.file.filename}
-    let url = "baseurl" + req.file.filename
+    let url = "http://18.222.180.31:3000/" + req.file.filename
     let result = await Users.update({token : req.body.token}, {
       $set : {profileImg : url}
     })
