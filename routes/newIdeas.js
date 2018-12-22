@@ -45,6 +45,21 @@ function newIdeas(app, Ideas, Users, rndstring, multer) {
   })
   .post('/ideaList', async (req,res)=>{
     let result = await Ideas.find()
+    let list1 = [], list2 = [], list3 = [], list4 = [], list5 = []
+    for (var i=0;result[i]!= null;i++) {
+      if(result[i].category === "IT") list1.push(result[i])
+      if(result[i].category === "스포츠") list2.push(result[i])
+      if(result[i].category === "교육") list3.push(result[i])
+      if(result[i].category === "유통 및 판매") list4.push(result[i])
+      if(result[i].category === "쇼핑") list5.push(result[i])
+    }
+    result = {
+      list1 : list1,
+      list2 : list2,
+      list3 : list3,
+      list4 : list4,
+      list5 : list5
+    }
     res.status(200).json({list : result})
   })
   .post('/addreply', async (req,res)=>{
