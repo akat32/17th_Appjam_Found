@@ -22,9 +22,10 @@ var UsersSchema = mongoose.Schema({
   projectList: [{
     token : {type : String} // 프로젝트 토큰
   }],
-  punchList : [{ // 후원자 리스트
-    projectToken : {type : String}, // 프로젝트 토큰
-    token : {type : String} // 후원자 토큰
+  myPunchList : [{
+    name : {type : String}, // 후원자 이름
+    price : {type : Number}, // 후원한 금액
+    token : {tyep : String} // 프로젝트 토큰
   }],
   profileImg: { type : String } // 프로필 이미지 링크
 })
@@ -56,9 +57,11 @@ var ProjectsSchema = mongoose.Schema({
   index : {type : String}, //
   userToken : {type : String}, // 글 올린 사람 토큰
   price : {type : Number}, // 예상 가격
-  punchPrice : {type : Number}, // 모인 금액
+  punchPrice : {type : Number, default : 0}, // 모인 금액
   punchMember : [{
-    token : {type : String}, // 후원자 토큰
+    name : {type : String}, // 후원자 이름
+    price : {type : Number}, // 후원한 금액
+    token : {type : String} // 후원자 토큰
   }],
   img : [{
     link : {type : String}

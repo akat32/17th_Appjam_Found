@@ -42,8 +42,8 @@ function auth(app, Users, rndstring, multer, fs) { // path 와 multer 은 충돌
       token : req.body.token,
       ideaList : result.ideaList,
       projectList : result.projectList,
-      punchList : result.punchList,
       phone : req.body.phone,
+      myPunchList : result.myPunchList,
       profileImg : result.profileImg
     }
     result = await Users.deleteOne({token : req.body.token})
@@ -64,7 +64,7 @@ function auth(app, Users, rndstring, multer, fs) { // path 와 multer 은 충돌
   })
   .post('/img', upload.single('img'), async (req,res)=>{
     let json = {profileImg : "baseurl" + req.file.filename}
-    let url = "http://18.222.180.31:3000/" + req.file.filename
+    let url = "http://18.222.180.31:3000/profile/" + req.file.filename
     let result = await Users.update({token : req.body.token}, {
       $set : {profileImg : url}
     })

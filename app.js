@@ -23,3 +23,4 @@ app.listen(PORT, ()=>{
 require('./routes/auth')(app, Users, rndstring, multer, fs)
 require('./routes/newIdeas')(app, Ideas, Users, rndstring, multer)
 require('./routes/newProjects')(app, Projects, Users, rndstring, multer)
+require('./routes/punch')(app, Projects, Users, rndstring)
