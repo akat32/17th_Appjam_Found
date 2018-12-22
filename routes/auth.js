@@ -30,7 +30,7 @@ function auth(app, Users, rndstring, multer, fs) { // path 와 multer 은 충돌
   .post('/signin', async (req,res)=>{
     let result = await Users.findOne(req.body)
     if(!result) return res.status(404).json({message : "User Not Found!"})
-    else return res.status(200).json({user : result})
+    else return res.status(200).json({User : result})
   })
   .post('/signset', async (req,res)=>{
     let result = await Users.findOne({token : req.body.token})
