@@ -109,3 +109,59 @@
     HTTP 200 : { url : 프로필 사진 링크 }
 
     HTTP 500 : { message : "ERR!" }
+
+* POST /newItem ( 프로젝트 생성 )
+
+> Params
+
+    token : 유저 토큰
+
+    title : {type : String}, // 사업 제목
+
+    itemName : {type : String}, // 아이템 이름
+
+    itemIntroduce : {type : String}, // 간단한 아이템 설명
+
+    introduce : {type : String}, // 상세 설명
+
+    category : {type : String}, // 카테고리
+
+> Response
+
+    HTTP 200 : { message : "success!" }
+
+    HTTP 500 : { message : "ERR!" }
+
+* POST /itemset ( 프로젝트 수정 )
+
+> Params
+
+    token : 프로젝트 토큰
+
+    title : 사업 제목
+
+    itemName : 아이템 이름
+
+    itemIntroduce : 간단한 아이템 설명
+
+    category : 카테고리
+
+    userToken : 프로젝트 대표 토큰
+
+> Response
+
+    HTTP 200 : { message : "success!"}
+
+    HTTP 500 : { message : "ERR!" }
+
+* POST /itemdel ( 프로젝트 삭제 )
+
+> Params
+
+    token : 프로젝트 토큰
+
+> Response
+
+    HTTP 200 : { message : "success!"}
+
+    HTTP 500 : { message : "ERR!"}

@@ -32,7 +32,7 @@ var ItemsSchema = mongoose.Schema({
   itemIntroduce : {type : String}, // 간단한 아이템 설명
   introduce : {type : String}, // 상세 설명
   currentStaff : {type : Number}, // 현재 인원
-  category : {type : String},
+  category : {type : String}, // 카테고리
   staffList : [{
     token : {type : String}, // 스태프 토큰
   }],
